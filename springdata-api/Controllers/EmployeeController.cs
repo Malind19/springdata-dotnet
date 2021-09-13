@@ -6,6 +6,7 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using springdata_api.Models;
 using springdata_common.Models;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -43,31 +44,39 @@ namespace springdata_api.Controllers
             return await container.CreateItemAsync<Employee>(employee);
         }
 
-        public async Task<List<Employee>> Get()
+        public async Task<string> Get()
         {
-            var cosmosDbEndpoint = _configuration["cosmosDB_Endpoint"];
-            var databaseName = _configuration["cosmosDB_Name"];
-            var containerName = _configuration["cosmosDB_Containers_Employees"];
-            var accessKeys = await GetDbKeys();
-            CosmosClient client = new CosmosClient(cosmosDbEndpoint, accessKeys.primaryMasterKey);
-
-            var database = client.GetDatabase(databaseName);
-            var container = database.GetContainer(containerName);
-
-            QueryDefinition queryDefinition = new QueryDefinition("SELECT * FROM c");
-
-            FeedIterator<Employee> queryResultSetIterator
-                = container.GetItemQueryIterator<Employee>(queryDefinition);
-            var employees = new List<Employee>();
-
-            while (queryResultSetIterator.HasMoreResults)
+            try
             {
-                FeedResponse<Employee> currentResultSet = await queryResultSetIterator.ReadNextAsync();
-                foreach (var result in currentResultSet)
-                    employees.Add(result);
+                var cosmosDbEndpoint = _configuration["cosmosDB_Endpoint"];
+                var databaseName = _configuration["cosmosDB_Name"];
+                var containerName = _configuration["cosmosDB_Containers_Employees"];
+                var accessKeys = await GetDbKeys();
+                CosmosClient client = new CosmosClient(cosmosDbEndpoint, accessKeys.primaryMasterKey);
+
+                var database = client.GetDatabase(databaseName);
+                var container = database.GetContainer(containerName);
+
+                QueryDefinition queryDefinition = new QueryDefinition("SELECT * FROM c");
+
+                FeedIterator<Employee> queryResultSetIterator
+                    = container.GetItemQueryIterator<Employee>(queryDefinition);
+                var employees = new List<Employee>();
+
+                while (queryResultSetIterator.HasMoreResults)
+                {
+                    FeedResponse<Employee> currentResultSet = await queryResultSetIterator.ReadNextAsync();
+                    foreach (var result in currentResultSet)
+                        employees.Add(result);
+                }
+
+                return JsonConvert.SerializeObject(employees);
+            }
+            catch (Exception ex)
+            {
+                return ex.Message + ex.StackTrace;
             }
 
-            return employees;
         }
 
         internal async Task<DatabaseAccountListKeysResult> GetDbKeys()
@@ -83,7 +92,6 @@ namespace springdata_api.Controllers
             _logger.LogDebug(accessToken);
 
             string endpoint = $"https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/listKeys?api-version=2019-12-12";
-
 
             // Add the access token to request headers.
             httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
