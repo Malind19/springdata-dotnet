@@ -30,6 +30,7 @@ namespace springdata_api.Controllers
             _configuration = configuration;
         }
 
+        [HttpPost]
         public async Task<Employee> Post(Employee employee)
         {
             var cosmosDbEndpoint = _configuration["cosmosDB_Endpoint"];
@@ -44,6 +45,7 @@ namespace springdata_api.Controllers
             return await container.CreateItemAsync<Employee>(employee);
         }
 
+        [HttpGet]
         public async Task<string> Get()
         {
             try
