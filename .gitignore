@@ -7,3 +7,5 @@
 /springdata-api/obj
 /springdata-common/obj
 /springdata-common/bin/Debug/netcoreapp3.1
+/springdata-wfe/bin/Debug/netcoreapp3.1
+/springdata-wfe/obj
