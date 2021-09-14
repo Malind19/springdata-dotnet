@@ -9,3 +9,6 @@
 /springdata-common/bin/Debug/netcoreapp3.1
 /springdata-wfe/bin/Debug/netcoreapp3.1
 /springdata-wfe/obj
+/springdata-fe/bin/Debug/netcoreapp3.1
+/springdata-fe/obj
+/springdata-fe/springdata-fe.csproj.user

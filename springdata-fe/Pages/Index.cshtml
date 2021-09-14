@@ -1,0 +1,44 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <p>This is a test application built to demonstrate the CI/CD process to Azure App Service Containers on Linux.</p>
+
+    <h1>Employees</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Age</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var emplooyee in Model.Employees)
+            {
+                <tr>
+                    <td>@emplooyee.Id</td>
+                    <td>@emplooyee.FirstName</td>
+                    <td>@emplooyee.LastName</td>
+                    <td>@emplooyee.Age</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <h2>New Employee</h2>
+    <div>
+        <form method="post">
+            <h3>Create Employee</h3>
+            @Html.TextBoxFor(m => m.NewEmployee.FirstName)
+            @Html.TextBoxFor(m => m.NewEmployee.LastName)
+            @Html.TextBoxFor(m => m.NewEmployee.Age)
+            <input type="submit" />
+        </form>
+    </div>
+</div>
