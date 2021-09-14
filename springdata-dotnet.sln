@@ -15,8 +15,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Pipelines\springdata-fe-pipeline.yml = Pipelines\springdata-fe-pipeline.yml
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "springdata-wfe", "springdata-wfe\springdata-wfe.csproj", "{4D217E75-B2FB-4E35-ACA6-E565205A606F}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "springdata-fe", "springdata-fe\springdata-fe.csproj", "{9101274F-AF9F-4692-BB23-9DD437DB2FEE}"
 EndProject
 Global
@@ -33,10 +31,6 @@ Global
 		{4D19148E-46A5-4FC3-B2EF-9E30C1C88B42}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4D19148E-46A5-4FC3-B2EF-9E30C1C88B42}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4D19148E-46A5-4FC3-B2EF-9E30C1C88B42}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4D217E75-B2FB-4E35-ACA6-E565205A606F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4D217E75-B2FB-4E35-ACA6-E565205A606F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4D217E75-B2FB-4E35-ACA6-E565205A606F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4D217E75-B2FB-4E35-ACA6-E565205A606F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9101274F-AF9F-4692-BB23-9DD437DB2FEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9101274F-AF9F-4692-BB23-9DD437DB2FEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9101274F-AF9F-4692-BB23-9DD437DB2FEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
