@@ -10,9 +10,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A9389CF4-22C1-4AC6-9DC6-209E2904CA6A}"
 	ProjectSection(SolutionItems) = preProject
 		DockerfileApi = DockerfileApi
-		DockerfileWfe = DockerfileWfe
+		DockerfileFe = DockerfileFe
 		Pipelines\springdata-api-pipeline.yml = Pipelines\springdata-api-pipeline.yml
-		Pipelines\springdata-wfe-pipeline.yml = Pipelines\springdata-wfe-pipeline.yml
+		Pipelines\springdata-fe-pipeline.yml = Pipelines\springdata-fe-pipeline.yml
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "springdata-wfe", "springdata-wfe\springdata-wfe.csproj", "{4D217E75-B2FB-4E35-ACA6-E565205A606F}"

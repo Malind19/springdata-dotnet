@@ -8,7 +8,7 @@ resources:
 
 variables:
   # Location of the Docker file
-  dockerfilePath: '$(Build.SourcesDirectory)/DockerfileWfe'
+  dockerfilePath: '$(Build.SourcesDirectory)/DockerfileFe'
 
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
