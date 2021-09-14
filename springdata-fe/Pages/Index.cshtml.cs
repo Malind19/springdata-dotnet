@@ -16,8 +16,6 @@ namespace springdata_fe.Pages
 
         public Employee[] Employees { get; set; }
 
-        public Employee NewEmployee { get; set; }
-
         public IndexModel(
             ILogger<IndexModel> logger,
             IConfiguration configuration)
@@ -30,18 +28,6 @@ namespace springdata_fe.Pages
         {
             var employeeService = new EmployeeService(_configuration);
             this.Employees = await employeeService.GetEmployeesAsync();
-        }
-
-        public async Task<IActionResult> OnPostAsync()
-        {
-            if (!string.IsNullOrEmpty(NewEmployee.FirstName) && !string.IsNullOrEmpty(NewEmployee.LastName))
-            {
-                this.NewEmployee.Id = Guid.NewGuid().ToString();
-                var employeeService = new EmployeeService(_configuration);
-                var employee = await employeeService.AddEmployeeAsync(this.NewEmployee);
-            }
-
-            return RedirectToPage("./Index");
         }
     }
 }
