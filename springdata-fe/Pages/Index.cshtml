@@ -19,15 +19,24 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var emplooyee in Model.Employees)
-            {
-                <tr>
-                    <td>@emplooyee.Id</td>
-                    <td>@emplooyee.FirstName</td>
-                    <td>@emplooyee.LastName</td>
-                    <td>@emplooyee.Age</td>
-                </tr>
-            }
+            @if (Model.Employees != null)
+                @foreach (var emplooyee in Model.Employees)
+                {
+                    <tr>
+                        <td>@emplooyee.Id</td>
+                        <td>@emplooyee.FirstName</td>
+                        <td>@emplooyee.LastName</td>
+                        <td>@emplooyee.Age</td>
+                    </tr>
+                }
         </tbody>
     </table>
+
+    <div asp-validation-summary="All"></div>
+    <form method="POST">
+        <div>First Name: <input asp-for="Employee.FirstName" /></div>
+        <div>Last Name: <input asp-for="Employee.LastName" /></div>
+        <div>Age: <input asp-for="Employee.Age" /></div>
+        <input type="submit" />
+    </form>
 </div>

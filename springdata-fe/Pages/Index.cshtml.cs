@@ -14,6 +14,9 @@ namespace springdata_fe.Pages
         private readonly ILogger<IndexModel> _logger;
         private readonly IConfiguration _configuration;
 
+        [BindProperty]
+        public Employee Employee { get; set; }
+
         public Employee[] Employees { get; set; }
 
         public IndexModel(
@@ -26,8 +29,26 @@ namespace springdata_fe.Pages
 
         public async Task OnGet()
         {
+            Employee = new Employee();
+            Employee.Id = Guid.NewGuid().ToString();
+
             var employeeService = new EmployeeService(_configuration);
             this.Employees = await employeeService.GetEmployeesAsync();
+        }
+
+        public async Task<IActionResult> OnPostAsync()
+        {
+            var employeeService = new EmployeeService(_configuration);
+
+            if (!ModelState.IsValid)
+            {
+                this.Employees = await employeeService.GetEmployeesAsync();
+                return Page();
+            }
+
+            await employeeService.AddEmployeeAsync(Employee);
+            
+            return RedirectToPage("/Index");
         }
     }
 }
