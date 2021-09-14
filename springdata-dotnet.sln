@@ -3,19 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31313.79
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "springdata-api", "springdata-api\springdata-api.csproj", "{7A12CD98-9069-487C-B2B9-42220AF69CA4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "springdata-api", "springdata-api\springdata-api.csproj", "{7A12CD98-9069-487C-B2B9-42220AF69CA4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "springdata-common", "springdata-common\springdata-common.csproj", "{4D19148E-46A5-4FC3-B2EF-9E30C1C88B42}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "springdata-common", "springdata-common\springdata-common.csproj", "{4D19148E-46A5-4FC3-B2EF-9E30C1C88B42}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A9389CF4-22C1-4AC6-9DC6-209E2904CA6A}"
 	ProjectSection(SolutionItems) = preProject
 		DockerfileApi = DockerfileApi
 		DockerfileWfe = DockerfileWfe
-		springdata-api-pipeline.yml = springdata-api-pipeline.yml
-		springdata-wfe-pipeline.yml = springdata-wfe-pipeline.yml
+		Pipelines\springdata-api-pipeline.yml = Pipelines\springdata-api-pipeline.yml
+		Pipelines\springdata-wfe-pipeline.yml = Pipelines\springdata-wfe-pipeline.yml
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "springdata-wfe", "springdata-wfe\springdata-wfe.csproj", "{4D217E75-B2FB-4E35-ACA6-E565205A606F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "springdata-wfe", "springdata-wfe\springdata-wfe.csproj", "{4D217E75-B2FB-4E35-ACA6-E565205A606F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
