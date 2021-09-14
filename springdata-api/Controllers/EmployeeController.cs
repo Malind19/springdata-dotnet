@@ -46,39 +46,31 @@ namespace springdata_api.Controllers
         }
 
         [HttpGet]
-        public async Task<string> Get()
+        public async Task<List<Employee>> Get()
         {
-            try
+            var cosmosDbEndpoint = _configuration["cosmosDB_Endpoint"];
+            var databaseName = _configuration["cosmosDB_Name"];
+            var containerName = _configuration["cosmosDB_Containers_Employees"];
+            var accessKeys = await GetDbKeys();
+            CosmosClient client = new CosmosClient(cosmosDbEndpoint, accessKeys.primaryMasterKey);
+
+            var database = client.GetDatabase(databaseName);
+            var container = database.GetContainer(containerName);
+
+            QueryDefinition queryDefinition = new QueryDefinition("SELECT * FROM c");
+
+            FeedIterator<Employee> queryResultSetIterator
+                = container.GetItemQueryIterator<Employee>(queryDefinition);
+            var employees = new List<Employee>();
+
+            while (queryResultSetIterator.HasMoreResults)
             {
-                var cosmosDbEndpoint = _configuration["cosmosDB_Endpoint"];
-                var databaseName = _configuration["cosmosDB_Name"];
-                var containerName = _configuration["cosmosDB_Containers_Employees"];
-                var accessKeys = await GetDbKeys();
-                CosmosClient client = new CosmosClient(cosmosDbEndpoint, accessKeys.primaryMasterKey);
-
-                var database = client.GetDatabase(databaseName);
-                var container = database.GetContainer(containerName);
-
-                QueryDefinition queryDefinition = new QueryDefinition("SELECT * FROM c");
-
-                FeedIterator<Employee> queryResultSetIterator
-                    = container.GetItemQueryIterator<Employee>(queryDefinition);
-                var employees = new List<Employee>();
-
-                while (queryResultSetIterator.HasMoreResults)
-                {
-                    FeedResponse<Employee> currentResultSet = await queryResultSetIterator.ReadNextAsync();
-                    foreach (var result in currentResultSet)
-                        employees.Add(result);
-                }
-
-                return JsonConvert.SerializeObject(employees);
-            }
-            catch (Exception ex)
-            {
-                return ex.Message + ex.StackTrace;
+                FeedResponse<Employee> currentResultSet = await queryResultSetIterator.ReadNextAsync();
+                foreach (var result in currentResultSet)
+                    employees.Add(result);
             }
 
+            return employees;
         }
 
         internal async Task<DatabaseAccountListKeysResult> GetDbKeys()
@@ -86,7 +78,7 @@ namespace springdata_api.Controllers
             var subscriptionId = _configuration["subscription_Id"];
             var resourceGroupName = _configuration["resourceGroup_Name"];
             var accountName = _configuration["cosmosDB_AccountName"];
-            
+
             var azureServiceTokenProvider = new AzureServiceTokenProvider();
 
             _logger.LogDebug("Loading");
