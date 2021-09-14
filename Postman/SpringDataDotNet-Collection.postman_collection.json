@@ -1,0 +1,54 @@
+{
+	"info": {
+		"_postman_id": "06fe573d-5460-4474-a78f-c2659963fc9d",
+		"name": "SpringDataDotNet-Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "CreateEmployee",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\":\"ca3ac298-995a-4028-b554-3464039024eb\",\r\n    \"FirstName\":\"FirstName\",\r\n    \"LastName\":\"LastName\",\r\n    \"Age\":32\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ApiHostUrl}}/api/employee",
+					"host": [
+						"{{ApiHostUrl}}"
+					],
+					"path": [
+						"api",
+						"employee"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ReadEmployees",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{ApiHostUrl}}/api/employee",
+					"host": [
+						"{{ApiHostUrl}}"
+					],
+					"path": [
+						"api",
+						"employee"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
