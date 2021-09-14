@@ -5,6 +5,7 @@ using springdata_common.Models;
 using System;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -39,8 +40,14 @@ namespace springdata_wfe.Data
             employee.Id = Guid.NewGuid().ToString();
             var apiAppHostUrl = _configuration["apiApp_HostUrl"];
             var json = JsonConvert.SerializeObject(employee);
-            var stringContent = new StringContent(json, Encoding.UTF32, "application/json");
-            var result = await httpClient.PostAsync($"{apiAppHostUrl}/api/employee", stringContent);
+            var inputMessage = new HttpRequestMessage
+            {
+                Content = new StringContent(json, Encoding.UTF8, "application/json")
+            };
+
+            inputMessage.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            var result = await httpClient.PostAsync($"{apiAppHostUrl}/api/employee", inputMessage.Content);
 
             if (result.IsSuccessStatusCode)
             {
