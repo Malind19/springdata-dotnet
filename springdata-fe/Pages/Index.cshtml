@@ -5,7 +5,7 @@
 }
 
 <div class="text-center">
-    <p>This is a test application built to demonstrate the CI/CD process to Azure App Service Containers on Linux.</p>
+    <p>This is a quick test application built to demonstrate the CI/CD process to Azure App Service Containers on Linux.</p>
 
     <h1>Employees</h1>
 
@@ -32,9 +32,10 @@
         </tbody>
     </table>
 
-    <div asp-validation-summary="All"></div>
+    <div asp-validation-summary="All" style="color:red"></div>
     <form method="POST">
-        <div>First Name: <input asp-for="Employee.FirstName" /></div>
+        <h3>New Employee</h3>
+        <div>First Name: <input required asp-for="Employee.FirstName" /></div>
         <div>Last Name: <input asp-for="Employee.LastName" /></div>
         <div>Age: <input asp-for="Employee.Age" /></div>
         <input type="submit" />
